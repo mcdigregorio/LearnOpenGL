@@ -74,6 +74,13 @@ int main()
         "{\n"
         "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
         "}\0";
+
+    const char *fragmentShaderSource2 = "#version 330 core\n"
+        "out vec4 FragColor;\n"
+        "void main()\n"
+        "{\n"
+        "   FragColor = vec4(1.0f, 1.0f, 0.0f, 1.0f);\n"
+        "}\0";
     
     unsigned int fragmentShader;
     fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
@@ -94,8 +101,29 @@ int main()
         std::cout << "Error during shader linking: " << infoLog << std::endl;
     }
     
+    //Compile and link second shader for yellow color
+    unsigned int fragmentShader2;
+    fragmentShader2 = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fragmentShader2, 1, &fragmentShaderSource2, NULL);
+    glCompileShader(fragmentShader2);
+    
+    unsigned int shaderProgram2;
+    shaderProgram2 = glCreateProgram();
+    
+    glAttachShader(shaderProgram2, vertexShader);
+    glAttachShader(shaderProgram2, fragmentShader2);
+    glLinkProgram(shaderProgram2);
+    
+    glGetProgramiv(shaderProgram2, GL_LINK_STATUS, &success);
+    if(!success)
+    {
+        glGetProgramInfoLog(fragmentShader2, 512, NULL, infoLog);
+        std::cout << "Error during fragshader2 linking: " << infoLog << std::endl;
+    }
+    
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
+    glDeleteShader(fragmentShader2);
     
     float vertices[] = {
         -0.75f, -0.5f, 0.0f,
@@ -159,7 +187,7 @@ int main()
         //Optional, unbind
         glBindVertexArray(0);
         
-        glUseProgram(shaderProgram);
+        glUseProgram(shaderProgram2);
         glBindVertexArray(VAO2);
         //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glDrawArrays(GL_TRIANGLES, 0, 3);
