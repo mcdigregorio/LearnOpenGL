@@ -4,12 +4,26 @@ project("LearnOpenGL")
 
 list(APPEND SOURCE_FILES
     src/main.cpp
+    src/Shader.hpp
+    src/Shader.cpp
+    "Shader Files/shader.fs"
+    "Shader Files/shader.vs"
     vendors/glfw/include/GLFW/glfw3.h
     vendors/glfw/include/GLFW/glfw3native.h
     Vendors/glad/src/glad.c
 )
 
+source_group(Shaders FILES
+	"Shader Files/shader.fs"
+	"Shader Files/shader.vs"
+)
+
 add_executable(LearnOpenGL ${SOURCE_FILES})
+
+set_target_properties(LearnOpenGL PROPERTIES
+	XCODE_GENERATE_SCHEME TRUE
+	XCODE_SCHEME_WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/src
+)
 
 target_include_directories(LearnOpenGL PRIVATE 
 	vendors/glfw/include
