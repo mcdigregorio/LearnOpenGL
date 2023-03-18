@@ -99,6 +99,7 @@ int main()
 //        int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
 //        glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
         ourShader.setFloat("outColor", greenValue);
+        ourShader.setFloat("xOffset", 0.5);
         
         glBindVertexArray(VAO);
         //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
