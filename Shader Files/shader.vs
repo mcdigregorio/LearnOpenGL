@@ -10,7 +10,7 @@ uniform float xOffset;
 void main()
 {
     gl_Position = vec4(aPos.x + xOffset, -aPos.y, aPos.z, 1.0);
-    ourColor = aColor;
+    ourColor = aPos;
 }
 
 //const char *vertexShaderSource = "#version 330 core\n"
