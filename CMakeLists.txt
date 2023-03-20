@@ -10,12 +10,17 @@ list(APPEND SOURCE_FILES
     "Shader Files/shader.vs"
     vendors/glfw/include/GLFW/glfw3.h
     vendors/glfw/include/GLFW/glfw3native.h
-    Vendors/glad/src/glad.c
+    vendors/glad/src/glad.c
+    vendors/stb/stb_image.cpp
 )
 
 source_group(Shaders FILES
 	"Shader Files/shader.fs"
 	"Shader Files/shader.vs"
+)
+
+source_group(vendors/stb FILES
+	vendors/stb/stb_image.cpp
 )
 
 add_executable(LearnOpenGL ${SOURCE_FILES})
@@ -28,6 +33,7 @@ set_target_properties(LearnOpenGL PROPERTIES
 target_include_directories(LearnOpenGL PRIVATE 
 	vendors/glfw/include
 	vendors/glad/include
+	vendors/stb
 )
 
 add_library(libglfw3 SHARED IMPORTED)
