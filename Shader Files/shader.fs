@@ -7,10 +7,11 @@ in vec2 TexCoord;
 
 uniform sampler2D ourTexture;
 uniform sampler2D texture2;
+uniform float mixer;
 
 vec2 TexCoordHorizontalFlip = vec2(-TexCoord.x, TexCoord.y);
 
 void main()
 {
-    FragColor = mix(texture(ourTexture, TexCoord), texture(texture2, TexCoordHorizontalFlip), 0.2);
+    FragColor = mix(texture(ourTexture, TexCoord), texture(texture2, TexCoordHorizontalFlip), mixer);
 }
