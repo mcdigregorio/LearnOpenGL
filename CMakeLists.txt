@@ -34,6 +34,7 @@ target_include_directories(LearnOpenGL PRIVATE
 	vendors/glfw/include
 	vendors/glad/include
 	vendors/stb
+	vendors/glm
 )
 
 add_library(libglfw3 SHARED IMPORTED)
